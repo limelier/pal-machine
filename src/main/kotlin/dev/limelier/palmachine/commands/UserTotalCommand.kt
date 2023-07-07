@@ -3,7 +3,7 @@ package dev.limelier.palmachine.commands
 import dev.limelier.palmachine.di
 import dev.limelier.palmachine.service.SessionService
 import dev.limelier.palmachine.util.humanHMS
-import dev.minn.jda.ktx.messages.reply_
+import dev.minn.jda.ktx.messages.send
 import net.dv8tion.jda.api.events.interaction.command.GenericCommandInteractionEvent
 import org.kodein.di.instance
 
@@ -16,10 +16,13 @@ fun setupUserTotalCommand() {
 }
 
 private fun handle(event: GenericCommandInteractionEvent) {
-    val sessionService: SessionService by di.instance()
-    val totalDuration = sessionService.total(event.user)
+    event.deferReply().queue()
+    event.timeCreated
 
-    event.reply_(
+    val sessionService: SessionService by di.instance()
+    val totalDuration = sessionService.userTotalDuration(event.user)
+
+    event.hook.send(
         content = if (totalDuration != null) {
             "So far, you've grinded for ${totalDuration.humanHMS()}."
         } else {

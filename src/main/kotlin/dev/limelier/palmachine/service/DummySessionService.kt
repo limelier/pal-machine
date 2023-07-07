@@ -28,24 +28,26 @@ class DummySessionService : SessionService {
         return closedSession
     }
 
-    override fun history(user: User?, limit: Int): List<Session> {
-        val s = if (user != null) {
+    override fun forUser(user: User?, limit: Int?): List<Session> {
+        val userSessions = if (user != null) {
             sessions.filter { it.user == user }
         } else {
             sessions
         }
 
-        return s.takeLast(limit)
+        return if (limit != null)
+            userSessions.takeLast(limit)
+        else
+            userSessions
     }
 
-    override fun total(user: User): Duration? {
-        return sessions
-            .filter { it.user == user }
+    override fun userTotalDuration(user: User): Duration? {
+        return forUser(user)
             .map { it.duration }
             .reduceOrNull { acc, duration -> acc + duration }
     }
 
-    override fun total(): Map<User, Duration?> = users.associateWith { user -> total(user) }
+    override fun userTotalDurations(): Map<User, Duration> = users.associateWith { user -> userTotalDuration(user)!! }
 
     private fun findOpenSession(user: User): Session? = sessions.find { it.user == user && it.open }
 }

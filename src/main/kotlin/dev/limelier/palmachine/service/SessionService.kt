@@ -18,18 +18,18 @@ interface SessionService {
     /**
      * Get the last `limit` sessions of one or all users, in chronological order.
      */
-    fun history(
+    fun forUser(
         user: User? = null,
-        limit: Int = 5,
+        limit: Int? = null,
     ): List<Session>
 
     /**
-     * Get the total the duration of all a user's sessions.
+     * Get the total the duration of all a user's sessions, or null if they have had none.
      */
-    fun total(user: User): Duration?
+    fun userTotalDuration(user: User): Duration?
 
     /**
      * Get the total duration of each user's sessions.
      */
-    fun total(): Map<User, Duration?>
+    fun userTotalDurations(): Map<User, Duration>
 }

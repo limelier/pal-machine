@@ -1,9 +1,6 @@
 package dev.limelier.palmachine
 
-import dev.limelier.palmachine.commands.setupClockInCommand
-import dev.limelier.palmachine.commands.setupClockOutCommand
-import dev.limelier.palmachine.commands.setupPingCommand
-import dev.limelier.palmachine.commands.setupUserTotalCommand
+import dev.limelier.palmachine.commands.*
 import dev.limelier.palmachine.service.DummySessionService
 import dev.limelier.palmachine.service.SessionService
 import dev.minn.jda.ktx.jdabuilder.light
@@ -29,5 +26,6 @@ fun main() {
     setupClockInCommand()
     setupClockOutCommand()
     setupUserTotalCommand()
+    setupUserHistoryCommand()
     logger.info { "Set up all commands; bot ready" }
 }
