@@ -18,7 +18,7 @@ fun setupUserHistoryCommand() {
         "Display your last sessions",
         ::handle
     ) {
-        option<Int>("limit", "How many sessions to limit the history to (default: $DEFAULT_LIMIT")
+        option<Int>("limit", "How many sessions to limit the history to (default: $DEFAULT_LIMIT)")
     }
 }
 
@@ -32,6 +32,7 @@ private fun handle(event: GenericCommandInteractionEvent) {
 
     val message = if (sessions.isNotEmpty()) {
         buildString {
+            appendLine("Your last $limit sessions:")
             for (session in sessions) {
                 val start = session.start.timestamp(TimeFormat.DATE_TIME_LONG)
                 appendLine("- $start ${if (session.open) "(on-going)" else ""} - ${session.duration.humanHMS()}")
