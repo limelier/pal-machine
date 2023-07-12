@@ -5,6 +5,7 @@ import java.time.Duration
 import java.time.Instant
 
 data class Session(
+    val id: Int,
     val user: User,
     val start: Instant = Instant.now(),
     val end: Instant? = null,
@@ -12,5 +13,5 @@ data class Session(
     val open get() = end == null
     val duration: Duration get() = Duration.between(start, end ?: Instant.now())
 
-    fun closed() = Session(user, start, Instant.now())
+    fun closed() = Session(id, user, start, Instant.now())
 }

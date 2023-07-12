@@ -49,7 +49,7 @@ jooq {
                 logging = Logging.WARN
                 jdbc.apply {
                     driver = "org.postgresql.Driver"
-                    url = "jdbc:postgresql://db:5432/pal-machine"
+                    url = "jdbc:postgresql://localhost:5432/pal-machine"
                     user = "postgres"
                     password = "postgres"
                 }

@@ -1,3 +1,9 @@
+[db]
+    # the default connection string looks for the docker-compose db
+    connectionString = "jdbc:postgresql://db:5432/pal-machine"
+    user = "postgres"
+    password = "postgres"
+
 [guild]
   ## if absent, the bot will try to run on the first guild it's connected to
 #  id = <guild id>

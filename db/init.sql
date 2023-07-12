@@ -1,5 +1,6 @@
 create table public.sessions (
-     user_id  bigint primary key not null,
-     start timestamp not null,
-     "end" timestamp
+    id serial primary key not null,
+    user_id  bigint not null,
+    start timestamptz not null,
+    "end" timestamptz
 )
