@@ -27,8 +27,7 @@ private fun handle(event: GenericCommandInteractionEvent) {
 
     val duration = session.duration
     event.reply_("Clocked out after ${duration.humanHMS()}.").queue()
-    config.guild.activeRoleId?.also {
-        val role = guild.getRoleById(it)!!
-        guild.removeRoleFromMember(event.user, role).queue()
+    config.guild.activeRoleId?.let {
+        guild.removeRoleFromMember(event.user, guild.getRoleById(it)!!).queue()
     }
 }
