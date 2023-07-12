@@ -3,7 +3,7 @@ package dev.limelier.palmachine
 import com.sksamuel.hoplite.ConfigLoaderBuilder
 import com.sksamuel.hoplite.addFileSource
 import dev.limelier.palmachine.commands.*
-import dev.limelier.palmachine.service.JooqSessionService
+import dev.limelier.palmachine.service.SessionService
 import dev.minn.jda.ktx.jdabuilder.light
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.jooq.impl.DSL
@@ -30,7 +30,7 @@ private val guild = jda.awaitReady().let {
 
 val di = DI {
     bindSingleton { jda }
-    bindSingleton { JooqSessionService() }
+    bindSingleton { SessionService() }
     bindSingleton { guild }
     bindSingleton { config }
     bindSingleton { DSL.using(config.db.connectionString, config.db.user, config.db.password.value) }
