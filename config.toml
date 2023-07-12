@@ -1,13 +1,7 @@
-db:
-  host: localhost
-  port: 5432
-  user: postgres
-  password: postgres
-
-guild:
+[guild]
   ## if absent, the bot will try to run on the first guild it's connected to
-#  id: <guild id>
+#  id = <guild id>
   ## if present, users with this role will be considered when displaying statistics even if they have no sessions
-#  enrolledRoleId: <role id>
+#  enrolledRoleId = <role id>
   ## if present, users will be given this role while they have an active session
-#  activeRoleId: <role id>
+#  activeRoleId = <role id>
