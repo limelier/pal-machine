@@ -16,7 +16,7 @@ fun setupUserTotalCommand() {
 }
 
 private fun handle(event: GenericCommandInteractionEvent) {
-    event.deferReply().queue()
+    event.deferReply(true).queue()
     event.timeCreated
 
     val sessionService: SessionService by di.instance()
@@ -27,7 +27,6 @@ private fun handle(event: GenericCommandInteractionEvent) {
             "So far, you've grinded for ${totalDuration.humanHMS()}."
         } else {
             "You haven't clocked in any sessions."
-        },
-        ephemeral = true
+        }
     ).queue()
 }

@@ -23,7 +23,7 @@ fun setupUserHistoryCommand() {
 }
 
 private fun handle(event: GenericCommandInteractionEvent) {
-    event.deferReply().queue()
+    event.deferReply(true).queue()
 
     val sessionService: SessionService by di.instance()
     val limit = event.getOption<Int>("limit") ?: DEFAULT_LIMIT
@@ -41,5 +41,5 @@ private fun handle(event: GenericCommandInteractionEvent) {
         "You haven't clocked in any sessions."
     }
 
-    event.hook.send(content = message, ephemeral = true).queue()
+    event.hook.send(content = message).queue()
 }
